@@ -3,24 +3,26 @@
 # current directory.
 #
 # Mark Reid <http://mark.reid.name>
+# with changed by Andrew D. Wong <http://andrewdwong.com>
 # CREATED: 2009-03-29
-JAVA=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/bin/java 
-CLJ_DIR=$HOME/Library/Clojure/lib
+# LAST MODIFIED: 2011-06-19
+
+# Add extra jars as specified by `.clojure` file
+JAVA="java"
+CLJ_DIR=$HOME/local/clojure
 CLOJURE=$CLJ_DIR/clojure.jar
 CONTRIB=$CLJ_DIR/clojure-contrib.jar
 JLINE=$CLJ_DIR/jline.jar
 CP=$PWD:$CLOJURE:$JLINE:$CONTRIB
 
-# Add extra jars as specified by `.clojure` file
 if [ -f .clojure ]
 then
-	CP=$CP:`cat .clojure`
+	CP=$CP: cat .clojure
 fi
 
-if [ -z "$1" ]; then 
+if [ -z "$1" ]; then
 	$JAVA -server -cp $CP \
-	    jline.ConsoleRunner clojure.lang.Repl    
+		jline.ConsoleRunner clojure.main
 else
-	scriptname=$1
-	$JAVA -server -cp $CP clojure.lang.Script $scriptname -- $*
+	$JAVA -server -cp $CP clojure.main -i $* 
 fi
