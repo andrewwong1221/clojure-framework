@@ -29,6 +29,8 @@ Next, get [JLine][] to make Clojure's interactive mode nicer:
 	$ curl http://internode.dl.sourceforge.net/sourceforge/jline/jline-0.9.94.zip > /tmp/jline.zip
 	$ unzip /tmp/jline.zip -d /tmp/
 	$ cp /tmp/jline-0.9.94/jline-0.9.94.jar lib/jline.jar
+
+JLine 1.0 is also availalbe to use with the REPL and can be downloaded from the same location as JLine 0.9.94
 	
 Make the `clj` script executable and link to it from somewhere in your `$PATH`. (I use `~/bin` and have added it to my `$PATH` in my `~/.bash_profile`):
 
